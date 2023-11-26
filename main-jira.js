@@ -35,7 +35,7 @@ getEvents = (myHeaders, githubOutput) => {
 }
 
 
-search = (myHeaders, githubOutput, searhParams) => {
+searchJira = (myHeaders, githubOutput, searhParams) => {
 
   var requestOptions = {
     method: 'GET',
@@ -71,7 +71,7 @@ search = (myHeaders, githubOutput, searhParams) => {
       return getEvents(myHeaders, githubOutput)
       break;
     case "search":
-      console.log("I own a dog");
+      return searchJira(myHeaders, githubOutput, searhParams)
       break;
 
     default:
