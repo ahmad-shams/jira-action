@@ -4,7 +4,7 @@ var jiraUserName = process.env.JIRA_USER_NAME
 var jiraUserToken = process.env.JIRA_USER_TOKEN
 var jiraAPI = process.env.JIRA_API
 var githubOutput = process.env.GITHUB_OUTPUT
-var searhParams = process.env.SEARCH_PARAMS
+var jiraParams = process.env.JIRA_PARAMS
 
 var myHeaders = new Headers()
 
@@ -35,7 +35,7 @@ getEvents = (myHeaders, githubOutput) => {
 }
 
 
-searchJira = (myHeaders, githubOutput, searhParams) => {
+searchJira = (myHeaders, githubOutput, jiraParams) => {
 
   var requestOptions = {
     method: 'GET',
@@ -43,7 +43,7 @@ searchJira = (myHeaders, githubOutput, searhParams) => {
     redirect: 'follow'
   }
 
-  paramsJSON = JSON.parse(searhParams);
+  paramsJSON = JSON.parse(jiraParams);
   paramsString = "";
   for (const key in paramsJSON){
     if(obj.hasOwnProperty(key)){
@@ -71,7 +71,7 @@ searchJira = (myHeaders, githubOutput, searhParams) => {
       return getEvents(myHeaders, githubOutput)
       break;
     case "search":
-      return searchJira(myHeaders, githubOutput, searhParams)
+      return searchJira(myHeaders, githubOutput, jiraParams)
       break;
 
     default:
