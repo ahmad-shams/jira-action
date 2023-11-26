@@ -4,6 +4,7 @@ var jiraUserName = process.env.JIRA_USER_NAME
 var jiraUserToken = process.env.JIRA_USER_TOKEN
 var jiraAPI = process.env.JIRA_API
 var githubOutput = process.env.GITHUB_OUTPUT
+var searhParams = process.env.SEARCH_PARAMS
 
 var myHeaders = new Headers()
 
@@ -34,13 +35,42 @@ getEvents = (myHeaders, githubOutput) => {
 }
 
 
+search = (myHeaders, githubOutput, searhParams) => {
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  }
+
+  paramsJSON = JSON.parse(searhParams);
+  paramsString = "";
+  for (const key in paramsJSON){
+    if(obj.hasOwnProperty(key)){
+      console.log(`${key} : ${res[key]}`);
+      paramsString.append(key + "=" + res[key] + "&");
+    }
+  }
+  paramsString = paramsString.replace(/&\s*$/, "");
+
+  fetch('https://dariosw.atlassian.net/rest/api/2/' + jiraAPI + "?jql="+paramsString, requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      console.log(result)
+      fs.writeFileSync(githubOutput, 'jira-api-output=' + JSON.stringify(result))
+    })
+    .catch(error => console.log('error', error))
+}
+
+
+
 
 
   switch (jiraAPI) {
     case "events":
       return getEvents(myHeaders, githubOutput)
       break;
-    case "dog":
+    case "search":
       console.log("I own a dog");
       break;
 

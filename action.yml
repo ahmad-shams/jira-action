@@ -16,6 +16,10 @@ inputs:
     description: Jira API
     required: true
     default: dummey
+  jira-params:
+    description: Jira API Parameters (JSON String)
+    required: false
+    default: dummey
 
 # Define your outputs here.
 outputs:
@@ -29,3 +33,4 @@ runs:
     JIRA_API: ${{ inputs.jira-api }}
     JIRA_USER_NAME: ${{ inputs.jira-user-name }}
     JIRA_USER_TOKEN: ${{ inputs.jira-user-token }}
+    JIRA_PARAMS: ${{ inputs.jira-params }}
