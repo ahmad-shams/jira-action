@@ -46,7 +46,7 @@ searchJira = (myHeaders, githubOutput, jiraParams) => {
   paramsJSON = JSON.parse(jiraParams);
   paramsString = "";
   for (const key in paramsJSON){
-    if(obj.hasOwnProperty(key)){
+    if(paramsJSON.hasOwnProperty(key)){
       console.log(`${key} : ${res[key]}`);
       paramsString.append(key + "=" + res[key] + "&");
     }
