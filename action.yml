@@ -1,0 +1,31 @@
+name: Report To Jira
+description: Create Jira items to Reflect CI & Testing status
+author: Ahmad Shams
+
+# Define your inputs here.
+inputs:
+  jira-user-name:
+    description: User Name at Jira
+    required: true
+    default: user@dariohealth.com
+  jira-user-token:
+    description: User Name Token at Jira
+    required: true
+    default: dummy
+  jira-api:
+    description: Jira API
+    required: true
+    default: dummey
+
+# Define your outputs here.
+outputs:
+  jira-api-output:
+    description: jira-api-output
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    JIRA_API: ${{ inputs.jira-api }}
+    JIRA_USER_NAME: ${{ inputs.jira-user-name }}
+    JIRA_USER_TOKEN: ${{ inputs.jira-user-token }}
