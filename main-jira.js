@@ -44,7 +44,7 @@ async function createJira(myHeaders, githubOutput, jiraParams) {
         {
           "key": globalParams.project
         },
-        "summary": "Test By Ahmad.",
+        "summary": " Build Number:" + process.env.GITHUB_RUN_ID,
         "description": "Test By Ahmad",
         "issuetype": {
           "name": globalParams.type
@@ -86,8 +86,6 @@ async function createJira(myHeaders, githubOutput, jiraParams) {
   console.log(myJiraList.total);
 
 }
-
-
 
 async function searchJira(myHeaders, githubOutput, jiraParams) {
   var requestOptions = {
