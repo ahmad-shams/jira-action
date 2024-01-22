@@ -1,4 +1,4 @@
-FROM node:20.10-alpine3.18
+FROM node:21.6-alpine3.18
 HEALTHCHECK CMD node --version || exit 1
 
 # Set the working directory inside the container
